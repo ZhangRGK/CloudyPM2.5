@@ -1,17 +1,17 @@
 {
     "manifest_version": 2,
-    "name": "我的时钟",
+    "name": "你总在我眼睛模糊时出现",
     "version": "1.0",
-    "description": "我的第一个Chrome扩展",
+    "description": "一个关于PM2.5的图片应用",
     "icons": {
-        "16": "images/blackkitty16.png",
-        "48": "images/blackkitty48.png",
-        "128": "images/blackkitty128.png"
+        "16": "images/soundcloud512.png",
+        "48": "images/soundcloud512.png",
+        "128": "images/soundcloud512.png"
     },
     "browser_action": {
         "default_icon": {
-            "19": "images/blackkitty19.png",
-            "38": "images/blackkitty38.png"
+            "19": "images/soundcloud512.png",
+            "38": "images/soundcloud512.png"
         },
         "default_title": "我的时钟",
         "default_popup": "popup.html"
