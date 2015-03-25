@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../resource/bootstrap.min.css" rel="stylesheet" >
+    <script type="text/javascript" src="../resource/jquery-1.11.2.min.js"></script>
+    <style>
+        .errorInput{
+            background: #f3dde0;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container" >
+    <div class="jumbotron">
+        <article >
+           <p> 梦醒君何在</p>
+            <p>重翻贝书叶，拟梦溯关塞。</p>
+            <p>燕雨三折寒，故人寻何在？</p>
+        </article>
+
+        <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+    </div>
+
+    <label for="city" >君何在？</label>
+
+    <input id ="city" type="text" placeholder="请输入您所在的城市" >
+
+
+    <input id="saveButton" type="button" class="btn btn-info" value="保存">
+    <label id="prompt" style="display: none">提示：输入有误，请输入城市市区名称，例如北京市、邯郸市。</label>
+
+    <script type="text/javascript" src="option.js"></script>
+</div>
+</body>
+</html>

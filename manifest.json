@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "你总在我眼睛模糊时出现",
-    "version": "1.0",
+    "name": "你总在我眼睛模糊时(PM2.5)出现",
+    "version": "1.2",
     "description": "一个关于PM2.5的图片应用",
     "icons": {
         "16": "images/soundcloud512.png",
@@ -13,9 +13,10 @@
             "19": "images/soundcloud512.png",
             "38": "images/soundcloud512.png"
         },
-        "default_title": "我的时钟",
-        "default_popup": "popup.html"
+        "default_title": "你总在我眼睛模糊时出现",
+        "default_popup": "popup/popup.html"
     },
+    "options_page": "option/options.html",
     "background":{"scripts":["background/bg.js"]},
     "permissions": [
         "https://*/",
