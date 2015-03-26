@@ -1,10 +1,16 @@
 /**
  * Created by wuyanc on 3/18/2015.
+ *
+ * 这是一个关于PM2.5的图片应用,当城市空气质量变差时，肉眼能见度受到影响，继而呈现不同的朦胧图片，而当空气质量良好时，则没有图片呈现，这正是这款应用名字的由来。
+ * 同时，该应用使用了Html5地理位置功能，在网络状态良好的情况下，可以自动获取用户所在城市的空气质量报告。
+ * 最后，借由此应用，希望大家保护环境，真爱地球。
  */
-var IMAGENUMBER=16;
+var token = "vcTxhhdD8xUup5TYeSqY";
+var weatherUrl = "http://www.pm25.in/api/querys/pm2_5.json?";
+var saying=['晴空之下，梦想肆意疯跑，遍地开花。','世间所有的相遇，都是久别重逢。','遗忘，是所有到过的美好。'];
+var saying2=['迷雾之中，初心彷徨游走，路在何方。','访问作者首页'];
 $(document).ready(function(){
-    getPM();
-
+    getAQI();
 });
 function httpRequest(url, callback){
     var xhr = new XMLHttpRequest();
@@ -16,12 +22,11 @@ function httpRequest(url, callback){
     }
     xhr.send();
 }
-var token = "vcTxhhdD8xUup5TYeSqY";
-var weatherUrl = "http://www.pm25.in/api/querys/pm2_5.json?";
-function getRandomInteger(){
-    return Math.floor(Math.random() * IMAGENUMBER) + 1
+
+function pickRandomNum(to){
+    return Math.floor(Math.random() * to)+1; //get from 1 ->to
 }
-function getPM(){
+function getAQI(){
 
     var city=void 0;//set a default value
     if(localStorage['city']=='undefined'||!localStorage['city']){
@@ -30,37 +35,42 @@ function getPM(){
     }
     else{
         city=localStorage['city'];
+        //show the old result firstly in case server has not respond
+        $('#date').text(localStorage['date']);
+        $('#aqi').text(localStorage['aqi']);
+        $('#quality').text(localStorage['quality']);
+        $('#city').text(city);
     }
     var url = weatherUrl+ "city="+city+"&"+"token="+token;
     httpRequest(url,function(res){
         var result= JSON.parse(res);
-        var pm= void 0;
+        var aqi= void 0;
         var quality=void 0;
         if(result&&!result["error"]){
-            pm =result[result.length-1]["aqi"];
+            aqi =result[result.length-1]["aqi"];
             quality=result[result.length-1]["quality"];
         }
-        if(pm){
+        if(aqi){
             chrome.browserAction.setBadgeBackgroundColor({color:'#000000'});
-            chrome.browserAction.setBadgeText({text:pm.toString()});
+            chrome.browserAction.setBadgeText({text:aqi.toString()});
             //format page value
             $('#date').text(formatCNDateString(new Date()));
+            localStorage['date']=formatCNDateString(new Date());
             $('#city').text(city);
-            $('#aqi').text(pm);
+
+            $('#aqi').text(aqi);
+            localStorage['aqi']=aqi;
             $('#quality').text(quality);
-            if(pm>50){
-
-                $('#img').attr('src','../images/'+getRandomInteger()+'.jpg');
+            localStorage['quality']=quality;
+            if(aqi>50){
+                $('#img').attr('src','../images/'+pickRandomNum(16)+'.jpg');
                 $('#img').show();
-                $('#link').text('访问作者主页');
-                $('#link').click(function(){
-
-                    chrome.tabs.create({url:"http://www.magicwu.com"});
-                });
+                $('#link').text(saying2[pickRandomNum(saying2.length)-1]);
             }
             else{
-                $('#link').text('世间所有的相遇，都是久别重逢,而我总在你眼睛模糊时出现。');
+                $('#link').text(saying[pickRandomNum(saying.length)-1]);
             }
+
         }
 
     });

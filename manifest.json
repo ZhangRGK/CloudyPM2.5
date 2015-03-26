@@ -1,8 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "你总在我眼睛模糊时(PM2.5)出现",
-    "version": "1.2",
-    "description": "一个关于PM2.5的图片应用",
+    "name": "PM2.5你总在我眼睛模糊时出现",
+    "version": "1.5",
+    "description": "PM2.5你总在我眼睛模糊时出现",
+    "short_name": "PM2.5图片应用",
     "icons": {
         "16": "images/soundcloud512.png",
         "48": "images/soundcloud512.png",

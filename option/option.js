@@ -5,7 +5,14 @@ var cities=["七台河","三亚","三明","三门峡","上海","上饶","东莞"
 
 
 $(document).ready(function(){
-    $('#city').val(localStorage['city']);
+    //Add this to fix show "undefined"
+
+
+    if(localStorage['city']!=='undefined'){
+
+        $('#city').val(localStorage['city']);
+    }
+
 });
 function errorHandle(){
     $('#city').addClass('errorInput');
